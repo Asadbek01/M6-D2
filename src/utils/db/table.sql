@@ -9,11 +9,6 @@ CREATE TABLE IF NOT EXISTS products
     created_at timestamp with time zone DEFAULT now(),
     updated_at timestamp with time zone DEFAULT now()
 );
-
- 
-
-
-
 -- -- DROP TABLE IF EXISTS public.review;
 
 CREATE TABLE IF NOT EXISTS reviews
