@@ -9,14 +9,20 @@ CREATE TABLE IF NOT EXISTS products
     created_at timestamp with time zone DEFAULT now(),
     updated_at timestamp with time zone DEFAULT now()
 );
+
+ 
+
+
+
 -- -- DROP TABLE IF EXISTS public.review;
 
-CREATE TABLE IF NOT EXISTS reviews
+CREATE TABLE IF NOT EXISTS review
 (
     review_id integer PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY ,
     comment varchar(100) NOT NULL,
     rate text NOT NULL,
-    product_id  integer REFERENCES products,
+    cover varchar(255) NOT NULL,
+    product_id  integer REFERENCES product,
     created_at timestamp with time zone DEFAULT now()
 );
 

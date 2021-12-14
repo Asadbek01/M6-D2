@@ -6,11 +6,11 @@ const reviewRouter = Router();
 //1 
 reviewRouter.post("/", async (req, res, next) => {
   try {
-    const { comment, rate, product_id } = req.body;
+    const { comment, rate, product_id,cover } = req.body;
     
     const result = await pool.query(
-      "INSERT INTO reviews (comment, rate, product_id) VALUES ($1, $2, $3) RETURNING *",
-      [comment, rate,  product_id]
+      "INSERT INTO review (comment, rate, product_id, cover) VALUES ($1, $2, $3, $4) RETURNING *",
+      [comment, rate,  product_id, cover]
     );
     res.status(201).send(result.rows[0]);
   } catch (error) {
@@ -32,7 +32,7 @@ reviewRouter.get("/", async (req, res, next) => {
 reviewRouter.get("/:id", async (req, res, next) => {
   try {
     const result = await pool.query(
-      "SELECT * FROM reviews WHERE review_id = $1;",
+      "SELECT * FROM review WHERE review_id = $1;",
       [req.params.id]
     );
     if (result.rows[0]) {
