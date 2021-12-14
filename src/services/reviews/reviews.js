@@ -9,7 +9,7 @@ reviewRouter.post("/", async (req, res, next) => {
     const { comment, rate, product_id } = req.body;
     
     const result = await pool.query(
-      "INSERT INTO review (comment, rate, product_id) VALUES ($1, $2, $3) RETURNING *",
+      "INSERT INTO reviews (comment, rate, product_id) VALUES ($1, $2, $3) RETURNING *",
       [comment, rate,  product_id]
     );
     res.status(201).send(result.rows[0]);
@@ -32,7 +32,7 @@ reviewRouter.get("/", async (req, res, next) => {
 reviewRouter.get("/:id", async (req, res, next) => {
   try {
     const result = await pool.query(
-      "SELECT * FROM review WHERE review_id = $1;",
+      "SELECT * FROM reviews WHERE review_id = $1;",
       [req.params.id]
     );
     if (result.rows[0]) {
